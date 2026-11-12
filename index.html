@@ -128,6 +128,15 @@ header{position:sticky;top:0;z-index:100}
 
 /* V13: skills back to 2-col cards with flex tags, Excel/Sheets first, light mode reverted */
 @media(min-width:801px){.skills{grid-template-columns:repeat(2,1fr)}}
+
+/* V14: light-mode sections semi-transparent like dark mode (.88), particles show through */
+body.light #about{background:linear-gradient(115deg,rgba(214,230,245,.88),rgba(224,236,242,.88) 52%,rgba(220,232,246,.88))}
+body.light #skills{background:linear-gradient(125deg,rgba(224,224,246,.88),rgba(230,224,246,.88) 55%,rgba(222,232,246,.88))}
+body.light #projects{background:linear-gradient(120deg,rgba(216,238,243,.88),rgba(218,238,241,.88) 52%,rgba(224,232,246,.88))}
+body.light #experience{background:linear-gradient(120deg,rgba(232,226,246,.88),rgba(222,232,246,.88) 55%,rgba(216,238,243,.88))}
+body.light #education{background:linear-gradient(120deg,rgba(224,238,236,.88),rgba(224,238,230,.88) 55%,rgba(222,232,244,.88))}
+body.light #contact{background:linear-gradient(120deg,rgba(234,226,248,.88),rgba(222,234,248,.88) 58%,rgba(218,240,238,.88))}
+body.light #deepp{background:linear-gradient(125deg,rgba(216,232,246,.88),rgba(228,230,246,.88) 50%,rgba(218,238,241,.88))}
 </style></head><body><canvas id="bg-particles" aria-hidden="true"></canvas>
 <header><div class="nav"><a href="#top" class="brand">DANI DWI DARMAWAN</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button><nav id="nav"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a><button class="btn secondary" id="theme" aria-label="Toggle color theme" style="padding:6px 11px">☀ / ☾</button></nav></div></header>
 <main id="top"><div class="home-content">
