@@ -129,19 +129,23 @@ header{position:sticky;top:0;z-index:100}
 /* V13: skills back to 2-col cards with flex tags, Excel/Sheets first, light mode reverted */
 @media(min-width:801px){.skills{grid-template-columns:repeat(2,1fr)}}
 
-/* V14: light-mode sections semi-transparent like dark mode (.88), particles show through */
-body.light #about{background:linear-gradient(115deg,rgba(214,230,245,.88),rgba(224,236,242,.88) 52%,rgba(220,232,246,.88))}
-body.light #skills{background:linear-gradient(125deg,rgba(224,224,246,.88),rgba(230,224,246,.88) 55%,rgba(222,232,246,.88))}
-body.light #projects{background:linear-gradient(120deg,rgba(216,238,243,.88),rgba(218,238,241,.88) 52%,rgba(224,232,246,.88))}
-body.light #experience{background:linear-gradient(120deg,rgba(232,226,246,.88),rgba(222,232,246,.88) 55%,rgba(216,238,243,.88))}
-body.light #education{background:linear-gradient(120deg,rgba(224,238,236,.88),rgba(224,238,230,.88) 55%,rgba(222,232,244,.88))}
-body.light #contact{background:linear-gradient(120deg,rgba(234,226,248,.88),rgba(222,234,248,.88) 58%,rgba(218,240,238,.88))}
-body.light #deepp{background:linear-gradient(125deg,rgba(216,232,246,.88),rgba(228,230,246,.88) 50%,rgba(218,238,241,.88))}
 
 /* V16: Soft Skills card back to one column, beside Analytical Methods */
 .skills .softskills{grid-column:auto}
-</style></head><body><canvas id="bg-particles" aria-hidden="true"></canvas>
-<header><div class="nav"><a href="#top" class="brand">DANI DWI DARMAWAN</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button><nav id="nav"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a><button class="btn secondary" id="theme" aria-label="Toggle color theme" style="padding:6px 11px">☀ / ☾</button></nav></div></header>
+
+/* V17: aurora glow background + twinkling particles + mouse parallax */
+.aurora{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none}
+.aurora i{position:absolute;display:block;border-radius:50%;filter:blur(100px);opacity:.45;will-change:transform}
+.aurora i:nth-child(1){width:52vw;height:52vw;left:-12vw;top:-14vh;background:radial-gradient(circle,#7b6cff 0%,transparent 65%);animation:drift1 38s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:46vw;height:46vw;right:-10vw;top:22vh;background:radial-gradient(circle,#2fd4c4 0%,transparent 65%);animation:drift2 46s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:40vw;height:40vw;left:30vw;bottom:-18vh;background:radial-gradient(circle,#ff8a7a 0%,transparent 65%);animation:drift3 52s ease-in-out infinite alternate}
+@keyframes drift1{from{transform:translate(0,0) scale(1)}to{transform:translate(9vw,7vh) scale(1.15)}}
+@keyframes drift2{from{transform:translate(0,0) scale(1.1)}to{transform:translate(-8vw,-6vh) scale(.95)}}
+@keyframes drift3{from{transform:translate(0,0) scale(1)}to{transform:translate(-6vw,-8vh) scale(1.12)}}
+#bg-particles{inset:-20px;width:auto;height:auto}
+@media(prefers-reduced-motion:reduce){.aurora i{animation:none}}
+</style></head><body><div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div><canvas id="bg-particles" aria-hidden="true"></canvas>
+<header><div class="nav"><a href="#top" class="brand">DANI DWI DARMAWAN</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button><nav id="nav"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a></nav></div></header>
 <main id="top"><div class="home-content">
 <div class="wrap hero"><div><h1>Turning data into <span>business insights.</span></h1><p class="lead">Hi, I'm <b style="color:var(--text)">Dani Dwi Darmawan</b> an analytical professional combining business operations experience with hands-on data analytics to support smarter decisions.</p><div class="buttons"><a class="btn" href="#projects">Explore My Projects ↗</a><a class="btn secondary" href="#contact">Get in Touch</a></div></div><div class="portrait-wrap"><img src="profile-photo.jpg" alt="Professional portrait of Dani Dwi Darmawan"></div></div>
 <section class="surface" id="about"><div class="wrap"><div class="section-head"><h2>Business mindset. Analytical approach.</h2><p>Bridging operational experience and data-driven problem solving.</p></div><div class="about"><div class="card"><h3>About Me</h3><p>I am an analytical professional with a background in business operations and hands-on experience in data analytics. Conducted an airline passenger satisfaction analysis project to identify key factors affecting customer satisfaction. Proposed recommendations targeting a 10% relative increase in passenger satisfaction to 47.80% within six months. Developed strategies focusing on improving service quality and operational performance. Proficient in Microsoft Excel, SQL, and Tableau, with strong problem-solving, critical thinking, and communication skills. I am eager to apply my analytical skills and business knowledge to support informed decision-making and business growth.</p></div><div class="card"><div class="fact"><b>Focus</b><span>Data Analytics · Business Intelligence</span></div><div class="fact"><b>Background</b><span>Data Analyst · Business Operations · Sales Operations · Bid Management</span></div><div class="fact"><b>Approach</b><span>Business problem → analysis → actionable recommendations</span></div></div></div></div></section>
@@ -166,7 +170,7 @@ body.light #deepp{background:linear-gradient(125deg,rgba(216,232,246,.88),rgba(2
 <div class="case-section"><h2>Explore the complete work</h2><div class="buttons"><a class="btn" href="DEEPP_Passenger_Satisfaction.pdf" target="_blank" rel="noopener">Full Presentation ↗</a><a class="btn secondary" href="https://colab.research.google.com/drive/14lwMiXriZrNy0hYZPWCCo30qllZ_hwAO" target="_blank" rel="noopener">Python Notebook ↗</a></div></div>
 </div></section>
 </main><footer>© <span id="year"></span> Dani Dwi Darmawan · Built for data-driven opportunities.</footer><script>
-document.getElementById('year').textContent=new Date().getFullYear();const nav=document.getElementById('nav'),menu=document.getElementById('menu');menu.addEventListener('click',()=>{let open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));document.getElementById('theme').addEventListener('click',()=>document.body.classList.toggle('light'));
+document.getElementById('year').textContent=new Date().getFullYear();const nav=document.getElementById('nav'),menu=document.getElementById('menu');menu.addEventListener('click',()=>{let open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));
 
 // Interactive particle network (yan-holtz style): drifting dots, lines between near dots, mouse links and gently pushes dots.
 (function(){
@@ -174,7 +178,7 @@ var canvas=document.getElementById('bg-particles');
 if(!canvas) return;
 var ctx=canvas.getContext('2d');
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var W=0,H=0,DPR=1,parts=[],mouse={x:-9999,y:-9999,active:false};
+var W=0,H=0,DPR=1,parts=[],mouse={x:-9999,y:-9999,active:false},px=0,py=0,cx=0,cy=0;
 var colors=['165,160,255','140,233,208','255,153,137','255,214,139'];
 function resize(){
   DPR=Math.min(window.devicePixelRatio||1,2);
@@ -186,10 +190,10 @@ function resize(){
   parts.length=target;
 }
 function newPart(){
-  return {x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.6+1.1,c:colors[Math.floor(Math.random()*colors.length)]};
+  return {x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.6+1.1,c:colors[Math.floor(Math.random()*colors.length)],tw:Math.random()*Math.PI*2};
 }
 function step(){
-  ctx.clearRect(0,0,W,H);
+  ctx.clearRect(0,0,W,H);var now=Date.now();cx+=(px-cx)*.04;cy+=(py-cy)*.04;canvas.style.transform='translate('+cx.toFixed(1)+'px,'+cy.toFixed(1)+'px)';
   var i,j,p,q,dx,dy,d;
   for(i=0;i<parts.length;i++){
     p=parts[i];
@@ -231,13 +235,13 @@ function step(){
   }
   for(i=0;i<parts.length;i++){
     p=parts[i];
-    ctx.fillStyle='rgba('+p.c+',.85)';
-    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+    var tw=0.72+0.28*Math.sin(now/700+p.tw);ctx.fillStyle='rgba('+p.c+','+(0.6+0.3*tw).toFixed(2)+')';
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r*tw,0,Math.PI*2);ctx.fill();
   }
   if(!reduced&&!document.hidden) requestAnimationFrame(step);
 }
 window.addEventListener('resize',resize);
-window.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;mouse.active=true;});
+window.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;mouse.active=true;px=(e.clientX/W-.5)*-14;py=(e.clientY/H-.5)*-10;});
 window.addEventListener('mouseout',function(){mouse.active=false;});
 document.addEventListener('visibilitychange',function(){if(!document.hidden&&!reduced)requestAnimationFrame(step);});
 resize();step();
