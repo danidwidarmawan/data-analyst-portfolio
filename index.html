@@ -122,6 +122,18 @@ header{position:sticky;top:0;z-index:100}
 #skills .tags{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 #skills .tag{justify-content:flex-start}
 .exp-logo.villa{width:92px;height:92px;padding:6px}
+
+/* V12: uniform wider logo tiles in Experience, translucent light-mode sections */
+.exp-logo{width:96px;height:64px}
+.exp-logo.villa{width:96px;height:64px;padding:8px}
+body.light #about{background:linear-gradient(115deg,rgba(224,236,248,.86),rgba(232,240,244,.86) 52%,rgba(228,236,248,.86))}
+body.light #skills{background:linear-gradient(125deg,rgba(232,232,248,.86),rgba(236,232,248,.86) 55%,rgba(230,238,248,.86))}
+body.light #projects{background:linear-gradient(120deg,rgba(226,242,246,.86),rgba(228,242,244,.86) 52%,rgba(232,238,248,.86))}
+body.light #experience{background:linear-gradient(120deg,rgba(238,234,248,.86),rgba(230,238,248,.86) 55%,rgba(226,242,246,.86))}
+body.light #education{background:linear-gradient(120deg,rgba(232,242,240,.86),rgba(232,242,236,.86) 55%,rgba(230,238,246,.86))}
+body.light #contact{background:linear-gradient(120deg,rgba(240,234,250,.86),rgba(230,240,250,.86) 58%,rgba(228,244,242,.86))}
+body.light #deepp{background:linear-gradient(125deg,rgba(226,238,248,.86),rgba(234,236,248,.86) 50%,rgba(228,242,244,.86))}
+@media(max-width:800px){.exp-logo,.exp-logo.villa{width:84px;height:56px}}
 </style></head><body><canvas id="bg-particles" aria-hidden="true"></canvas>
 <header><div class="nav"><a href="#top" class="brand">DANI DWI DARMAWAN</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button><nav id="nav"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a><button class="btn secondary" id="theme" aria-label="Toggle color theme" style="padding:6px 11px">☀ / ☾</button></nav></div></header>
 <main id="top"><div class="home-content">
