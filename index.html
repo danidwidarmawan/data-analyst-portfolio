@@ -66,6 +66,27 @@ main,footer{position:relative;z-index:1}
 body.light #about,body.light #skills,body.light #projects,body.light #experience,body.light #education,body.light #contact,body.light #deepp{opacity:1}
 @media(max-width:800px){section{padding:90px 0;min-height:100svh}.hero h1{font-size:clamp(44px,11vw,64px)}.lead{font-size:18px}.section-head h2{font-size:clamp(32px,8vw,42px)}.card{padding:26px}}
 @media(prefers-reduced-motion:reduce){html{scroll-snap-type:none}}
+
+/* V7: denser particles, fuller About / Education / Contact slides, education logos */
+#about .card p{font-size:19px;line-height:1.85}
+#about .card h3{font-size:28px}
+#about .fact{padding:20px 0}
+#about .fact b{font-size:17px}
+#about .fact span{font-size:16px;line-height:1.6}
+#about .card{padding:40px}
+#education .timeline{gap:32px}
+#education .card{padding:44px;min-height:340px;display:flex;flex-direction:column;justify-content:center}
+#education .card h3{font-size:28px;line-height:1.3}
+#education .card p{font-size:18px;line-height:1.75}
+#education .card .label{font-size:14px}
+.edu-logo{width:88px;height:88px;object-fit:contain;background:#fff;border-radius:18px;padding:10px;margin-bottom:22px;box-shadow:0 10px 28px #0004}
+#contact .card{padding:40px}
+#contact .card h3{font-size:28px}
+#contact .card p{font-size:18px;line-height:1.75}
+#contact .links{gap:20px}
+#contact .links a,#contact .links span{font-size:19px}
+#contact .contact{gap:36px}
+@media(max-width:800px){#about .card p,#education .card p,#contact .card p{font-size:17px}#education .card{min-height:0;padding:32px}.edu-logo{width:72px;height:72px}}
 </style></head><body><canvas id="bg-particles" aria-hidden="true"></canvas>
 <header><div class="nav"><a href="#top" class="brand">DANI DWI DARMAWAN</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button><nav id="nav"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a><button class="btn secondary" id="theme" aria-label="Toggle color theme" style="padding:6px 11px">☀ / ☾</button></nav></div></header>
 <main id="top"><div class="home-content">
@@ -79,7 +100,7 @@ body.light #about,body.light #skills,body.light #projects,body.light #experience
 <div class="card"><div class="label">Jan 2018 - Sep 2023 · Digiserve by Telkom Indonesia</div><h3>Sales Operations & Bid Management</h3><ul><li>Analyzed and processed sales data using Microsoft Excel and Salesforce to identify potential opportunities across customer segments.</li><li>Coordinated cross-functional handovers and business documentation.</li></ul></div>
 <div class="card"><div class="label">May 2017 - Jan 2018 · PT Wira Cipta Sejahtera</div><h3>Network Operations Center</h3><ul><li>Analyzed network alerts, incident logs and performance data to identify recurring issues.</li><li>Monitored network performance and system availability.</li></ul></div>
 </div></div></section>
-<section class="surface" id="education"><div class="wrap"><div class="section-head"><h2>Education & Analytics Training</h2></div><div class="timeline"><div class="card"><div class="label">Jun - Oct 2026</div><h3>RevoU - Full Stack Data Analytics</h3><p>Business problem identification, statistical analysis, Excel, SQL, Python and Tableau.</p></div><div class="card"><div class="label">Sep 2012 - Sep 2016</div><h3>Gunadarma University</h3><p>Bachelor's Degree in Information Technology · GPA 3.28</p></div></div></div></section>
+<section class="surface" id="education"><div class="wrap"><div class="section-head"><h2>Education & Analytics Training</h2></div><div class="timeline"><div class="card"><div class="label">Jun - Oct 2026</div><img class="edu-logo" src="revou-logo.png" alt="RevoU logo"><h3>RevoU - Full Stack Data Analytics</h3><p>Business problem identification, statistical analysis, Excel, SQL, Python and Tableau.</p></div><div class="card"><div class="label">Sep 2012 - Sep 2016</div><img class="edu-logo" src="gunadarma-logo.png" alt="Universitas Gunadarma logo"><h3>Gunadarma University</h3><p>Bachelor's Degree in Information Technology · GPA 3.28</p></div></div></div></section>
 <section id="contact"><div class="wrap"><div class="section-head"><h2>Let's connect and turn data into insights.</h2><p>Interested in Data Analyst and Business Intelligence opportunities.</p></div><div class="contact"><div class="card"><h3>Get in touch</h3><div class="links"><a href="mailto:danidwidarmawan@gmail.com">✉ danidwidarmawan@gmail.com ↗</a><a href="https://www.linkedin.com/in/dani-dwi-darmawan" target="_blank" rel="noopener"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:6px"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.63-1.85 3.36-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45z"/></svg>LinkedIn ↗</a><span class="muted">Jagakarsa, South Jakarta, Indonesia</span></div></div><div class="card"><h3>Resume</h3><p>Explore my experience, education and technical skills in my latest CV.</p><a class="btn" href="Dani_Dwi_Darmawan_CV.pdf" download>Download CV ↓</a></div></div></div></section>
 </div>
 <section id="deepp" class="detail"><div class="wrap"><a class="back" href="#projects">← Back to projects</a><h1 class="case-title">Passenger Satisfaction Analysis</h1><p class="lead">Turning passenger insights into a better travel experience.</p><div class="buttons" style="margin-bottom:30px"><a class="btn" href="DEEPP_Passenger_Satisfaction.pdf" target="_blank" rel="noopener">View Original Project PDF ↗</a><a class="btn secondary" href="https://colab.research.google.com/drive/14lwMiXriZrNy0hYZPWCCo30qllZ_hwAO" target="_blank" rel="noopener">View Analysis Notebook ↗</a></div>
@@ -107,7 +128,7 @@ function resize(){
   W=window.innerWidth;H=window.innerHeight;
   canvas.width=W*DPR;canvas.height=H*DPR;
   ctx.setTransform(DPR,0,0,DPR,0,0);
-  var target=Math.min(90,Math.max(40,Math.floor(W*H/18000)));
+  var target=Math.min(190,Math.max(90,Math.floor(W*H/8500)));
   while(parts.length<target) parts.push(newPart());
   parts.length=target;
 }
