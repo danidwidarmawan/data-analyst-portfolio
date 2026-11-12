@@ -37,7 +37,36 @@ body.light #education{background:linear-gradient(120deg,#eaf3e8,#e5eff7)}
 body.light #contact{background:linear-gradient(120deg,#f5e9ef,#e5f0f5)}
 body.light #deepp{background:linear-gradient(120deg,#e8eef9,#e5f3ef)}
 body.light .card{background:#ffffffdc;border-color:#8295a740}
-</style></head><body>
+
+/* V6: full-page slides + interactive particle background */
+html{scroll-snap-type:y proximity}
+main>div.home-content>.wrap.hero, section{min-height:100vh;min-height:100svh;scroll-snap-align:start}
+.hero{min-height:100vh;min-height:100svh;padding-top:110px;padding-bottom:110px}
+section{display:flex;flex-direction:column;justify-content:center;padding:110px 0;box-sizing:border-box}
+section>.wrap{width:100%}
+.hero h1{font-size:clamp(52px,7vw,96px)}
+.lead{font-size:20px;line-height:1.7}
+.section-head{margin-bottom:44px}
+.section-head h2{font-size:clamp(38px,5vw,60px)}
+.section-head p{font-size:18px}
+.card{padding:32px}
+.about,.skills,.project-grid,.timeline,.case-grid{gap:24px}
+.btn{padding:14px 26px;font-size:15px}
+#bg-particles{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.75}
+header{position:relative;z-index:20}
+main,footer{position:relative;z-index:1}
+#about,#skills,#projects,#experience,#education,#contact,#deepp{background-blend-mode:normal}
+#about{background:linear-gradient(115deg,rgba(25,45,61,.88),rgba(36,58,67,.88) 52%,rgba(32,51,75,.88))}
+#skills{background:linear-gradient(125deg,rgba(32,41,69,.88),rgba(43,41,75,.88) 55%,rgba(38,59,80,.88))}
+#projects{background:linear-gradient(120deg,rgba(26,53,68,.88),rgba(28,61,68,.88) 52%,rgba(36,53,75,.88))}
+#experience{background:linear-gradient(120deg,rgba(48,43,69,.88),rgba(37,53,75,.88) 55%,rgba(27,53,67,.88))}
+#education{background:linear-gradient(120deg,rgba(40,59,69,.88),rgba(40,60,58,.88) 55%,rgba(37,55,74,.88))}
+#contact{background:linear-gradient(120deg,rgba(52,48,76,.88),rgba(41,62,82,.88) 58%,rgba(35,67,74,.88))}
+#deepp{background:linear-gradient(125deg,rgba(25,43,64,.88),rgba(39,52,73,.88) 50%,rgba(33,62,67,.88))}
+body.light #about,body.light #skills,body.light #projects,body.light #experience,body.light #education,body.light #contact,body.light #deepp{opacity:1}
+@media(max-width:800px){section{padding:90px 0;min-height:100svh}.hero h1{font-size:clamp(44px,11vw,64px)}.lead{font-size:18px}.section-head h2{font-size:clamp(32px,8vw,42px)}.card{padding:26px}}
+@media(prefers-reduced-motion:reduce){html{scroll-snap-type:none}}
+</style></head><body><canvas id="bg-particles" aria-hidden="true"></canvas>
 <header><div class="nav"><a href="#top" class="brand">DANI DWI DARMAWAN</a><button class="menu" id="menu" aria-label="Toggle menu" aria-expanded="false">☰</button><nav id="nav"><a href="#about">About</a><a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#experience">Experience</a><a href="#education">Education</a><a href="#contact">Contact</a><button class="btn secondary" id="theme" aria-label="Toggle color theme" style="padding:6px 11px">☀ / ☾</button></nav></div></header>
 <main id="top"><div class="home-content">
 <div class="wrap hero"><div><h1>Turning data into <span>business insights.</span></h1><p class="lead">Hi, I'm <b style="color:var(--text)">Dani Dwi Darmawan</b> an analytical professional combining business operations experience with hands-on data analytics to support smarter decisions.</p><div class="buttons"><a class="btn" href="#projects">Explore My Projects ↗</a><a class="btn secondary" href="#contact">Get in Touch</a></div></div><div class="portrait-wrap"><img src="profile-photo.jpg" alt="Professional portrait of Dani Dwi Darmawan"></div></div>
@@ -64,4 +93,80 @@ body.light .card{background:#ffffffdc;border-color:#8295a740}
 </div></section>
 </main><footer>© <span id="year"></span> Dani Dwi Darmawan · Built for data-driven opportunities.</footer><script>
 document.getElementById('year').textContent=new Date().getFullYear();const nav=document.getElementById('nav'),menu=document.getElementById('menu');menu.addEventListener('click',()=>{let open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open))});nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');menu.setAttribute('aria-expanded','false')}));document.getElementById('theme').addEventListener('click',()=>document.body.classList.toggle('light'));
+
+// Interactive particle network (yan-holtz style): drifting dots, lines between near dots, mouse links and gently pushes dots.
+(function(){
+var canvas=document.getElementById('bg-particles');
+if(!canvas) return;
+var ctx=canvas.getContext('2d');
+var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var W=0,H=0,DPR=1,parts=[],mouse={x:-9999,y:-9999,active:false};
+var colors=['165,160,255','140,233,208','255,153,137','255,214,139'];
+function resize(){
+  DPR=Math.min(window.devicePixelRatio||1,2);
+  W=window.innerWidth;H=window.innerHeight;
+  canvas.width=W*DPR;canvas.height=H*DPR;
+  ctx.setTransform(DPR,0,0,DPR,0,0);
+  var target=Math.min(90,Math.max(40,Math.floor(W*H/18000)));
+  while(parts.length<target) parts.push(newPart());
+  parts.length=target;
+}
+function newPart(){
+  return {x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,r:Math.random()*1.6+1.1,c:colors[Math.floor(Math.random()*colors.length)]};
+}
+function step(){
+  ctx.clearRect(0,0,W,H);
+  var i,j,p,q,dx,dy,d;
+  for(i=0;i<parts.length;i++){
+    p=parts[i];
+    if(!reduced){
+      // gentle push away from the mouse
+      dx=p.x-mouse.x;dy=p.y-mouse.y;d=Math.sqrt(dx*dx+dy*dy);
+      if(mouse.active&&d<140&&d>0.1){p.vx+=dx/d*.06;p.vy+=dy/d*.06;}
+      p.vx*=.985;p.vy*=.985;
+      if(Math.abs(p.vx)<.08)p.vx+=((Math.random()-.5)*.02);
+      if(Math.abs(p.vy)<.08)p.vy+=((Math.random()-.5)*.02);
+      p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>W)p.vx*=-1;
+      if(p.y<0||p.y>H)p.vy*=-1;
+      p.x=Math.max(0,Math.min(W,p.x));p.y=Math.max(0,Math.min(H,p.y));
+    }
+  }
+  for(i=0;i<parts.length;i++){
+    for(j=i+1;j<parts.length;j++){
+      p=parts[i];q=parts[j];
+      dx=p.x-q.x;dy=p.y-q.y;d=dx*dx+dy*dy;
+      if(d<14400){
+        var a=(1-d/14400)*.35;
+        ctx.strokeStyle='rgba(165,180,255,'+a+')';
+        ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+      }
+    }
+    // lines from the mouse to nearby dots
+    if(mouse.active){
+      p=parts[i];
+      dx=p.x-mouse.x;dy=p.y-mouse.y;d=dx*dx+dy*dy;
+      if(d<19600){
+        var am=(1-d/19600)*.6;
+        ctx.strokeStyle='rgba(140,233,208,'+am+')';
+        ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(mouse.x,mouse.y);ctx.stroke();
+      }
+    }
+  }
+  for(i=0;i<parts.length;i++){
+    p=parts[i];
+    ctx.fillStyle='rgba('+p.c+',.85)';
+    ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();
+  }
+  if(!reduced&&!document.hidden) requestAnimationFrame(step);
+}
+window.addEventListener('resize',resize);
+window.addEventListener('mousemove',function(e){mouse.x=e.clientX;mouse.y=e.clientY;mouse.active=true;});
+window.addEventListener('mouseout',function(){mouse.active=false;});
+document.addEventListener('visibilitychange',function(){if(!document.hidden&&!reduced)requestAnimationFrame(step);});
+resize();step();
+})();
+
 </script></body></html>
